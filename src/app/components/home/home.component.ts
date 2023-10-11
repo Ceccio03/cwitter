@@ -16,8 +16,9 @@ export class HomeComponent implements OnInit {
   constructor(private firestore: FirestoreService) {}
 
   ngOnInit(): void {
-    this.firestore.getCwits().then(data => {
-      this.cwits = data as Cwit[];
-    });
+    this.firestore.getCwits()
+    // .then(data => {
+    //   this.cwits = data as Cwit[];
+    // });
   }
 }
