@@ -22,6 +22,9 @@ export class LoginComponent implements OnInit {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+
+        alert("Errore durante la creazione dell'utente: " + errorMessage);
+        console.error(error);
       });
   }
 }
