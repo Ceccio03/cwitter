@@ -1,30 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  ngOnInit(): void {
-    const auth = getAuth();
+export class LoginComponent {
+  loginForm = this.fb.group({
+    email: [''],
+    psw: ['']
+  });
+  constructor(private fb: FormBuilder, private authServ: AuthService) {}
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+  onSubmit() {
+    const email = this.loginForm.value.email;
+    const psw = this.loginForm.value.psw;
 
-        alert("Errore durante la creazione dell'utente: " + errorMessage);
-        console.error(error);
-      });
+    this.authServ.login(email!, psw!);
   }
 }

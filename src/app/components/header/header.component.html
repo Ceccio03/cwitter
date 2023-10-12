@@ -1,1 +1,8 @@
-<p>header works!</p>
+<header>
+    <span>cwitter</span>
+    <button *ngIf="user" (click)="logout()">Logout</button>
+    <div *ngIf="!user">
+        <button routerLink="/login">login</button>
+        <button routerLink="/register">register</button>
+    </div>
+</header>
