@@ -7,6 +7,9 @@ import { OurUser } from '../models/our-user';
   providedIn: 'root'
 })
 export class FirestoreService {
+  loadUserCwits(uid: string) {
+    throw new Error('Method not implemented.');
+  }
   db: Firestore;
 
   constructor(private fireApp: FireappService) {
